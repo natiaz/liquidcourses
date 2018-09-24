@@ -15,7 +15,12 @@ class CreateActionsTable extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('student_id');
+            $table->integer('course_id');
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 
