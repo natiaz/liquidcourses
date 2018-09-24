@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Category;
+use App\Action;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
@@ -14,5 +16,15 @@ class Course extends Model
   public function isOpen()
   {
     return $this->status == Course::COURSE_OPEN;
+  }
+
+  public function actions()
+  {
+    return $this->hasMany(Action::class);
+  }
+
+  public function categories()
+  {
+    return $this->belongsToMany(Category::class);
   }
 }
