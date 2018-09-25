@@ -15,6 +15,9 @@ class User extends Authenticatable
   const USER_ADMIN = 'true';
   const USER_REGULAR = 'false';
 
+  // To fix error on legacy models seed
+  protected $table = 'users';
+
   /**
    * The attributes that are mass assignable.
    *
