@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Action extends Model
 {
-  protected $fillable = ['student_id', 'course_id'];
+  protected $fillable = ['name', 'student_id', 'course_id'];
 
   public function student()
   {
