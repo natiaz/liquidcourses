@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
       // We clean the tables
       Action::truncate();
       Category::truncate();
-      Course::tuncate();
-      Student::turncate();
+      Course::truncate();
+      Student::truncate();
       User::truncate();
       DB::table('category_course');
 
