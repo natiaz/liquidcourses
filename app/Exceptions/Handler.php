@@ -4,10 +4,15 @@ namespace App\Exceptions;
 
 use App\Traits\ApiResponser;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -65,7 +70,37 @@ class Handler extends ExceptionHandler
       if ($exception instanceof AuthenticationException) {
         return $this->unauthenticated($request, $exception);
       }
-      return parent::render($request, $exception);
+      if ($exception instanceof AuthorizationException) {
+        return $this->errorResponse('No posees permisos para ejecutar esta acción', 403);
+      }
+      if( $exception instanceof NotFoundHttpException)
+      {
+        return $this->errorResponse('Upss, esta página no existe', 404);
+      }
+      if( $exception instanceof MethodNotAllowedHttpException)
+      {
+        return $this->errorResponse('Upss, método incorrecto!', 405);
+      }
+      if( $exception instanceof HttpException)
+      {
+        return $this->errorResponse($exception->getMessage(), $exception->getStatusCode());
+      }
+      if( $exception instanceof QueryException)
+      {
+        $code = $exception->errorInfo[1];
+        if($code == 1451 )
+        {
+          return $this->errorResponse('No se puede eliminar el recurso porque está relacionado con otro', 409);
+        }
+      }
+      if(config('app.debug'))
+      {
+        return parent::render($request, $exception);
+      }
+      else
+      {
+        return $this->errorResponse('Fallo inesperado, pruebe de nuevo', 500);
+      }
     }
 
     /**
