@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Http\Controllers\ApiController;
 use App\Student;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class StudentController extends Controller
+class StudentController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class StudentController extends Controller
       // Only the users with actions are students
       $students = Student::has('actions')->get();
 
-      return response()->json(['data' => $students], 200);
+      return $this->showAll($students);
     }
 
 
@@ -32,7 +32,7 @@ class StudentController extends Controller
     {
       $student = Student::has('actions')->findOrFail($id);
 
-      return response()->json(['data' => $student], 200);
+      return $this->showOne($student);
     }
 
 }
