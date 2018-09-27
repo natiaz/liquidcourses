@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-  use Notifiable;
+  use Notifiable, SoftDeletes;
 
   const USER_VERIFIED = '1';
   const USER_NOT_VERIFIED = '0';
@@ -17,6 +18,7 @@ class User extends Authenticatable
 
   // To fix error on legacy models seed
   protected $table = 'users';
+  protected $dates = ['deleted_at'];
 
   /**
    * The attributes that are mass assignable.
