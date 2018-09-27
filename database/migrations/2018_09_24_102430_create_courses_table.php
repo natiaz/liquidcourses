@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->integer('maximum')->unsigned();
             $table->string('status')->default(Course::COURSE_CLOSE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

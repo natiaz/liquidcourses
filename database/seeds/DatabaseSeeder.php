@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
       User::truncate();
       DB::table('category_course');
 
-      $numberUsers      = 10;
+      $numberUsers      = 50;
       $numberCategories = 20;
       $numberCourses    = 30;
-      $numberActions    = 100;
+      $numberActions    = 10;
 
       factory(User::class,  $numberUsers)->create();
       factory(Category::class,  $numberCategories)->create();

@@ -19,6 +19,7 @@ class CreateActionsTable extends Migration
             $table->integer('student_id')->unsigned();
             $table->integer('course_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('courses');
