@@ -25,13 +25,11 @@ class StudentController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Student $student
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Student $student)
     {
-      $student = Student::has('actions')->findOrFail($id);
-
       return $this->showOne($student);
     }
 
