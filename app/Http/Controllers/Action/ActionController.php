@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Action;
 
+use App\Action;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
+
 
 class ActionController extends ApiController
 {
@@ -14,7 +16,8 @@ class ActionController extends ApiController
      */
     public function index()
     {
-        //
+      $actions = Action::all();
+      return $this->showAll($actions);
     }
 
     /**
@@ -41,21 +44,21 @@ class ActionController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Action $action)
     {
-        //
+      return $this->showOne($action);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Action $action)
     {
         //
     }
@@ -64,10 +67,10 @@ class ActionController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Action $action)
     {
         //
     }
@@ -75,10 +78,10 @@ class ActionController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Action $action)
     {
         //
     }
