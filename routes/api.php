@@ -22,7 +22,7 @@ Route::resource('students', 'Student\StudentController', ['only' => ['index', 's
 /**
  * Categories
  */
-
+// To Do admins will be able to create & edit categories
 Route::resource('categories', 'Category\CategoryController', ['except' => ['create', 'edit']]);
 
 /**
