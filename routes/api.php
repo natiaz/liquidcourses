@@ -18,6 +18,9 @@ use Illuminate\Http\Request;
  */
 
 Route::resource('students', 'Student\StudentController', ['only' => ['index', 'show']]);
+Route::resource('students.actions', 'Student\StudentActionController', ['only' => ['index']]);
+Route::resource('students.courses', 'Student\StudentCourseController', ['only' => ['index']]);
+Route::resource('students.categories', 'Student\StudentCategoryController', ['only' => ['index']]);
 
 /**
  * Categories
@@ -36,6 +39,7 @@ Route::resource('courses', 'Course\CourseController', ['only' => ['index', 'show
  */
 
 Route::resource('actions', 'Action\ActionController', ['only' => ['index', 'show']]);
+Route::resource('actions.categories', 'Action\ActionCategoryController', ['only' => ['index']]);
 
 /**
  * Users
