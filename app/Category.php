@@ -13,6 +13,8 @@ class Category extends Model
   protected $fillable = ['name', 'description'];
   protected $dates = ['deleted_at'];
 
+  protected $hidden = ['pivot'];
+
   public function courses()
   {
     return $this->belongsToMany(Course::class);

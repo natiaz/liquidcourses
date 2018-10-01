@@ -16,6 +16,7 @@ class Course extends Model
 
   protected $fillable = ['name', 'description', 'maximum', 'status'];
   protected $dates = ['deleted_at'];
+  protected $hidden = ['pivot'];
 
   public function isOpen()
   {

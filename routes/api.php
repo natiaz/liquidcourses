@@ -27,6 +27,9 @@ Route::resource('students.categories', 'Student\StudentCategoryController', ['on
  */
 // To Do admins will be able to create & edit categories
 Route::resource('categories', 'Category\CategoryController', ['except' => ['create', 'edit']]);
+Route::resource('categories.courses', 'Category\CategoryCourseController', ['only' => ['index']]);
+Route::resource('categories.actions', 'Category\CategoryActionController', ['only' => ['index']]);
+Route::resource('categories.students', 'Category\CategoryStudentController', ['only' => ['index']]);
 
 /**
  * Courses
