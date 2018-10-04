@@ -36,6 +36,11 @@ Route::resource('categories.students', 'Category\CategoryStudentController', ['o
  */
 
 Route::resource('courses', 'Course\CourseController', ['only' => ['index', 'show']]);
+Route::resource('courses.actions', 'Course\CourseActionController', ['only' => ['index']]);
+Route::resource('courses.students', 'Course\CourseStudentController', ['only' => ['index']]);
+Route::resource('courses.students.actions', 'Course\CourseStudentActionController', ['only' => ['store']]);
+Route::resource('courses.categories', 'Course\CourseCategoryController', ['only' => ['index', 'update', 'destroy']]);
+
 
 /**
  * Actions
