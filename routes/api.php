@@ -54,3 +54,5 @@ Route::resource('actions.categories', 'Action\ActionCategoryController', ['only'
  */
 
 Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
+
+Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
